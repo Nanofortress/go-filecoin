@@ -239,7 +239,7 @@ func newAddress(protocol Protocol, payload []byte) (Address, error) {
 func encode(network Network, addr Address) (string, error) {
 	// DONOTMERGE: what should encoding a Undef address return, and should it evene be allowed?
 	if addr == Undef {
-		return "", nil
+		return EmptyAddressString, nil
 	}
 	var ntwk string
 	switch network {
@@ -248,7 +248,7 @@ func encode(network Network, addr Address) (string, error) {
 	case Testnet:
 		ntwk = TestnetPrefix
 	default:
-		return "", ErrUnknownNetwork
+		return EmptyAddressString, ErrUnknownNetwork
 	}
 
 	var strAddr string
@@ -259,7 +259,7 @@ func encode(network Network, addr Address) (string, error) {
 	case ID:
 		strAddr = ntwk + fmt.Sprintf("%d", addr.Protocol()) + fmt.Sprintf("%d", leb128.ToUInt64(addr.Payload()))
 	default:
-		return "", ErrUnknownProtocol
+		return EmptyAddressString, ErrUnknownProtocol
 	}
 	return strAddr, nil
 }
@@ -267,6 +267,9 @@ func encode(network Network, addr Address) (string, error) {
 func decode(a string) (Address, error) {
 	// DONOTMERGE: should decoding a zero length address error?
 	if len(a) == 0 {
+		return Undef, nil
+	}
+	if a == EmptyAddressString {
 		return Undef, nil
 	}
 	if len(a) > MaxAddressStringLength || len(a) < 3 {

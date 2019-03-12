@@ -45,13 +45,13 @@ const (
 		"address": "/ip4/0.0.0.0/tcp/6000"
 	},
 	"mining": {
-		"minerAddress": "",
-		"blockSignerAddress": "",
+		"minerAddress": "[EMPTY_ADDRESS]",
+		"blockSignerAddress": "[EMPTY_ADDRESS]",
 		"autoSealIntervalSeconds": 120,
 		"storagePrice": "0"
 	},
 	"wallet": {
-		"defaultAddress": ""
+		"defaultAddress": "[EMPTY_ADDRESS]"
 	},
 	"heartbeat": {
 		"beatTarget": "",

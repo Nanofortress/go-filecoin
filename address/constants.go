@@ -65,6 +65,9 @@ var (
 	ErrInvalidChecksum = errors.New("invalid address checksum")
 )
 
+// EmptyAddressString is the string used to represent an empty address when encoded to a string.
+var EmptyAddressString = "[EMPTY_ADDRESS]"
+
 // PayloadHashLength defines the hash length taken over addresses using the Actor and SECP256K1 protocols.
 const PayloadHashLength = 20
 
