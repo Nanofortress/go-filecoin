@@ -248,7 +248,7 @@ func encode(network Network, addr Address) (string, error) {
 	case Testnet:
 		ntwk = TestnetPrefix
 	default:
-		panic("invalid network byte")
+		return "", ErrUnknownNetwork
 	}
 
 	var strAddr string
